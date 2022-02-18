@@ -1,6 +1,7 @@
 package azamat.demo.service.Impl;
 
 import azamat.demo.model.Advertisement;
+import azamat.demo.model.Category;
 import azamat.demo.repository.AdvertisementRepo;
 import azamat.demo.service.AdvertisementService;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,11 @@ public class AdvertisementServiceImpl implements AdvertisementService {
     @Override
     public Advertisement update(Advertisement advertisement) {
         return advertisementRepo.save(advertisement);
+    }
+
+    @Override
+    public List<Advertisement> findByCategory(Category category) {
+        return advertisementRepo.findAllByCategory(category);
     }
 
     @Override

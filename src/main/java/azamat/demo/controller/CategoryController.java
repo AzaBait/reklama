@@ -1,10 +1,7 @@
 package azamat.demo.controller;
-
-
 import azamat.demo.model.Category;
 import azamat.demo.service.CategoryService;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController

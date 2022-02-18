@@ -10,5 +10,6 @@ public interface AdvertisementService {
     List<Advertisement> findAll();
     Advertisement save(Advertisement advertisement);
     Advertisement update(Advertisement advertisement);
+    List<Advertisement> findByCategory(Category category);
     void delete(Long id);
 }
