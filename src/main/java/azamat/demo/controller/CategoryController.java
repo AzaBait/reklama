@@ -22,7 +22,12 @@ public class CategoryController {
     }
 
     @GetMapping("/list")
-    public List<Category> getAllSubcategories(@PathVariable String name) {
+    public List<Category> getCategories() {
+        return categoryService.findAll();
+    }
+
+    @GetMapping("/{name}")
+    public List<Category> getAllSubcategoriesByName(@PathVariable String name) {
         Category category = new Category();
         category.setName(name);
         return categoryService.findCategoriesByName(name);
