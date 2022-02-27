@@ -11,5 +11,6 @@ public interface AdvertisementService {
     Advertisement save(Advertisement advertisement);
     Advertisement update(Advertisement advertisement);
     List<Advertisement> findByCategory(Category category);
+    List<Advertisement> findAllOrderByPriceAsc();
     void delete(Long id);
 }

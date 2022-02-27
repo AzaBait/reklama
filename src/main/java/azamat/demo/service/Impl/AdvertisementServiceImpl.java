@@ -38,6 +38,11 @@ public class AdvertisementServiceImpl implements AdvertisementService {
     }
 
     @Override
+    public List<Advertisement> findAllOrderByPriceAsc() {
+        return advertisementRepo.findAllOrderByPriceAsc();
+    }
+
+    @Override
     public void delete(Long id) {
     advertisementRepo.deleteById(id);
     }

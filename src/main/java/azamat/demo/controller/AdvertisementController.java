@@ -24,6 +24,11 @@ public class AdvertisementController {
         return advertisementService.findAll();
     }
 
+    @GetMapping("/orderByPrice")
+    public List<Advertisement> findAllOrderByPriceAsc() {
+        return advertisementService.findAllOrderByPriceAsc();
+    }
+
     @PostMapping("/save")
     public Advertisement save(@RequestBody Advertisement advertisement){
         advertisement.setStatus(AdvertisementStatus.ACTIVE);

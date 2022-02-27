@@ -3,6 +3,7 @@ package azamat.demo.repository;
 import azamat.demo.model.Advertisement;
 import azamat.demo.model.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -11,4 +12,7 @@ import java.util.List;
 public interface AdvertisementRepo extends JpaRepository <Advertisement,Long>{
 
     List<Advertisement> findAllByCategory(Category category);
+
+    @Query("FROM Advertisement ORDER BY price ASC")
+    List<Advertisement> findAllOrderByPriceAsc();
 }
