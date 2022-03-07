@@ -1,5 +1,6 @@
 package azamat.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,10 +20,14 @@ public class Category {
     private Long id;
     private String name;
 
+
     @ManyToOne
     private Category parentCategory;
 
+
     @OneToMany(mappedBy = "parentCategory")
     private List<Category> subCategories;
+
+
 
 }

@@ -40,5 +40,13 @@ public class CategoryServiceImpl implements CategoryService {
         return categoryRepo.findCategoriesByName(name);
     }
 
+    @Override
+    public List<Category> findRootCategories() {
+        return categoryRepo.findAllCatgoriesByParentCategoryIsNull();
+    }
+
 
 }
+
+
+
