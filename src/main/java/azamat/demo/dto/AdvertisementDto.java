@@ -19,6 +19,6 @@ public class AdvertisementDto {
     private Double price;
     private Date createdAt;
     private AdvertisementStatus status;
-    private Category category;
+    private CategoryDto category;
 
 }

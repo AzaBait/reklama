@@ -12,5 +12,6 @@ public interface AdvertisementService {
     Advertisement update(Advertisement advertisement);
     List<Advertisement> findByCategory(Category category);
     List<Advertisement> findAllOrderByPriceAsc();
+    List<Advertisement> findAdvertisementByPriceBetween(Double fromPrice, Double toPrice);
     void delete(Long id);
 }

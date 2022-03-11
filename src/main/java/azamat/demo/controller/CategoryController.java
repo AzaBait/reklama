@@ -1,7 +1,6 @@
 package azamat.demo.controller;
-import azamat.demo.dto.AdvertisementDto;
+
 import azamat.demo.dto.CategoryDto;
-import azamat.demo.model.Advertisement;
 import azamat.demo.model.Category;
 import azamat.demo.service.CategoryService;
 import org.modelmapper.ModelMapper;
@@ -17,7 +16,7 @@ public class CategoryController {
     private CategoryService categoryService;
     private final ModelMapper modelMapper;
 
-    public CategoryController(CategoryService categoryService,ModelMapper modelMapper) {
+    public CategoryController(CategoryService categoryService, ModelMapper modelMapper) {
         this.categoryService = categoryService;
         this.modelMapper = modelMapper;
     }
@@ -25,7 +24,7 @@ public class CategoryController {
     @GetMapping("/list")
 
     public List<CategoryDto> getCategories() {
-        List<Category> categories = categoryService.findAll();
+        List<Category> categories = categoryService.findRootCategories();
         return categories.stream().map(this::convertToDto).collect(Collectors.toList());
     }
 
@@ -36,21 +35,21 @@ public class CategoryController {
     }
 
     @PostMapping("/save")
-    public CategoryDto save(@RequestBody CategoryDto categoryDto){
+    public CategoryDto save(@RequestBody CategoryDto categoryDto) {
         Category category = convertToEntity(categoryDto);
         Category categorySaved = categoryService.save(category);
         return convertToDto(categorySaved);
     }
 
     @PutMapping("/update")
-    public CategoryDto update(@RequestBody CategoryDto categoryDto){
+    public CategoryDto update(@RequestBody CategoryDto categoryDto) {
         Category category = convertToEntity(categoryDto);
         Category categorySaved = categoryService.save(category);
         return convertToDto(categorySaved);
     }
 
     @DeleteMapping("/delete/{id}")
-    public void delete(@PathVariable Long id ){
+    public void delete(@PathVariable Long id) {
         categoryService.delete(id);
     }
 
@@ -63,4 +62,4 @@ public class CategoryController {
         Category category = modelMapper.map(categoryDto, Category.class);
         return category;
     }
-   }
+}

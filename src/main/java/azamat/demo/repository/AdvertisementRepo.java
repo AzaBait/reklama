@@ -15,4 +15,9 @@ public interface AdvertisementRepo extends JpaRepository <Advertisement,Long>{
 
     @Query("FROM Advertisement ORDER BY price ASC")
     List<Advertisement> findAllOrderByPriceAsc();
+
+   @Query("from Advertisement where price between :fromPrice and :toPrice")
+    List<Advertisement> findAdvertisementByPriceBetween(Double fromPrice, Double toPrice);
+
+
 }

@@ -7,6 +7,7 @@ import azamat.demo.model.Category;
 import azamat.demo.service.AdvertisementService;
 import org.modelmapper.ModelMapper;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,8 +25,15 @@ public class AdvertisementController {
     }
 
     @GetMapping("/list")
-    public List<AdvertisementDto> getAll(){
+    public List<AdvertisementDto> getAll() {
         List<Advertisement> advertisements = advertisementService.findAll();
+        return advertisements.stream().map(this::convertToDto).collect(Collectors.toList());
+    }
+
+    @GetMapping("/filter")
+    public List<AdvertisementDto> findAdvertisementByPriceBetween(@RequestParam(required = false) Double fromPrice,
+                                                                  @RequestParam(required = false) Double toPrice) {
+        List<Advertisement> advertisements = advertisementService.findAdvertisementByPriceBetween(fromPrice,toPrice);
         return advertisements.stream().map(this::convertToDto).collect(Collectors.toList());
     }
 
@@ -36,27 +44,28 @@ public class AdvertisementController {
     }
 
     @PostMapping("/save")
-    public AdvertisementDto save(@RequestBody AdvertisementDto advertisementDto){
+    public AdvertisementDto save(@RequestBody AdvertisementDto advertisementDto) {
         advertisementDto.setStatus(AdvertisementStatus.ACTIVE);
         advertisementDto.setCreatedAt(new Date());
         Advertisement advertisement = convertToEntity(advertisementDto);
         Advertisement advertisementSaved = advertisementService.save(advertisement);
         return convertToDto(advertisementSaved);
     }
+
     @PutMapping("/update")
-    public AdvertisementDto update(@RequestBody AdvertisementDto advertisementDto){
+    public AdvertisementDto update(@RequestBody AdvertisementDto advertisementDto) {
         Advertisement advertisement = convertToEntity(advertisementDto);
         Advertisement advertisementUpdated = advertisementService.update(advertisement);
         return convertToDto(advertisementUpdated);
     }
 
     @DeleteMapping("/delete/{id}")
-    public void delete(@PathVariable Long id ){
+    public void delete(@PathVariable Long id) {
         advertisementService.delete(id);
     }
 
     @GetMapping("/category/{categoryId}")
-    public List<AdvertisementDto>getAllByCategory(@PathVariable Long categoryId){
+    public List<AdvertisementDto> getAllByCategory(@PathVariable Long categoryId) {
 
         Category category = new Category();
         category.setId(categoryId);

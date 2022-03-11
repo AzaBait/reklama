@@ -42,7 +42,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public List<Category> findRootCategories() {
-        return categoryRepo.findAllCatgoriesByParentCategoryIsNull();
+        return categoryRepo.findAllCategoriesByParentCategoryIsNull();
     }
 
 

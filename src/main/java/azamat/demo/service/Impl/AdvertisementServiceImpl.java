@@ -43,6 +43,12 @@ public class AdvertisementServiceImpl implements AdvertisementService {
     }
 
     @Override
+    public List<Advertisement> findAdvertisementByPriceBetween(Double fromPrice, Double toPrice) {
+        return advertisementRepo.findAdvertisementByPriceBetween(fromPrice,toPrice);
+    }
+
+
+    @Override
     public void delete(Long id) {
     advertisementRepo.deleteById(id);
     }
